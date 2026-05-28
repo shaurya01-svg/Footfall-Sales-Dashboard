@@ -9,8 +9,7 @@ import shap
 st.set_page_config(page_title="Footfall Dashboard", layout="wide")
 
 # LOAD DATA
-df = pd.read_csv("Data/cleaned_walmart.csv")
-
+df = pd.read_csv("AI_Project/Data/cleaned_walmart.csv")
 # DATE CONVERSION
 df['Date'] = pd.to_datetime(df['Date'], dayfirst=True)
 
@@ -19,8 +18,7 @@ df['Month'] = df['Date'].dt.month
 df['Year'] = df['Date'].dt.year
 
 # LOAD MODEL
-model = pickle.load(open("Notebook/model.pkl", "rb"))
-
+model = pickle.load(open("AI_Project/Notebook/model.pkl", "rb"))
 # SIDEBAR
 st.sidebar.title("🔎 Filters")
 
