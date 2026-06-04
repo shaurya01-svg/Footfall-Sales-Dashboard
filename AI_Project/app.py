@@ -4,12 +4,22 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
 import shap
+import os
 
 # PAGE CONFIG
 st.set_page_config(page_title="Footfall Dashboard", layout="wide")
 
 # LOAD DATA
-df = pd.read_csv("Data/cleaned_walmart.csv")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+csv_path = os.path.join(BASE_DIR, "Data", "cleaned_walmart.csv")
+
+df = pd.read_csv(csv_path)
+
+#DEBUG 
+st.write("Base Directory:", BASE_DIR)
+st.write("Files in AI_Project:", os.listdir(BASE_DIR))
 # DATE CONVERSION
 df['Date'] = pd.to_datetime(df['Date'], dayfirst=True)
 
@@ -18,7 +28,10 @@ df['Month'] = df['Date'].dt.month
 df['Year'] = df['Date'].dt.year
 
 # LOAD MODEL
-model = pickle.load(open("Notebook/model.pkl", "rb"))
+
+model_path = os.path.join(BASE_DIR, "Notebook", "model.pkl")
+
+model = pickle.load(open(model_path, "rb"))
 # SIDEBAR
 st.sidebar.title("🔎 Filters")
 
