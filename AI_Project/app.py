@@ -85,7 +85,7 @@ ax1.set_ylabel("Sales")
 ax1.set_title("Monthly Sales Trend")
 
 st.pyplot(fig1)
-
+plt.close(fig1)
 # FOOTFALL VS SALES
 st.subheader("👥 Footfall vs Sales")
 
@@ -101,6 +101,7 @@ sns.scatterplot(
 ax2.set_title("Footfall vs Weekly Sales")
 
 st.pyplot(fig2)
+plt.close(fig2)
 
 # TEMPERATURE VS SALES
 st.subheader("🌡 Temperature vs Sales")
@@ -117,6 +118,7 @@ sns.scatterplot(
 ax3.set_title("Temperature vs Weekly Sales")
 
 st.pyplot(fig3)
+plt.close(fig3)
 
 # HOLIDAY VS SALES
 st.subheader("🎉 Holiday vs Sales")
@@ -133,6 +135,7 @@ sns.boxplot(
 ax4.set_title("Holiday Impact on Sales")
 
 st.pyplot(fig4)
+plt.close(fig4)
 
 # STORE COMPARISON
 st.subheader("🏪 Store-wise Comparison")
@@ -147,7 +150,7 @@ ax5.set_ylabel("Average Weekly Sales")
 ax5.set_title("Store-wise Average Weekly Sales")
 
 st.pyplot(fig5)
-
+plt.close(fig5)
 # HEATMAP
 st.subheader("🔥 Correlation Heatmap")
 
@@ -163,6 +166,7 @@ sns.heatmap(
 )
 
 st.pyplot(fig6)
+plt.close(fig6)
 
 # ML PREDICTION SECTION
 st.subheader("🤖 ML Prediction")
@@ -188,7 +192,7 @@ prediction = model.predict([[
 st.success(f"Predicted Weekly Sales: ₹ {prediction[0]:,.2f}")
 
 # EXPLAINABLE AI
-st.subheader("🧠 Explainable AI (SHAP)")
+'''st.subheader("🧠 Explainable AI (SHAP)")
 
 X = df[[
     "Footfall",
@@ -216,7 +220,10 @@ shap.plots.waterfall(
     show=False
 )
 
-st.pyplot(fig_shap)
+st.pyplot(fig_shap)'''
+st.subheader("🧠 Explainable AI (SHAP)")
+st.info("SHAP visualization temporarily disabled.")
+
 
 # INSIGHTS SECTION
 st.subheader("📌 Insights")
