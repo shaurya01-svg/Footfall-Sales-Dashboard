@@ -192,35 +192,7 @@ prediction = model.predict([[
 st.success(f"Predicted Weekly Sales: ₹ {prediction[0]:,.2f}")
 
 # EXPLAINABLE AI
-'''st.subheader("🧠 Explainable AI (SHAP)")
 
-X = df[[
-    "Footfall",
-    "Holiday_Flag"
-]]
-
-explainer = shap.Explainer(model, X)
-
-sample_data = pd.DataFrame([[
-    input_footfall,
-    holiday_input
-]], columns=[
-    "Footfall",
-    "Holiday_Flag"
-])
-
-shap_values = explainer(sample_data)
-
-st.write("### Feature Impact on Prediction")
-
-fig_shap, ax = plt.subplots()
-
-shap.plots.waterfall(
-    shap_values[0],
-    show=False
-)
-
-st.pyplot(fig_shap)'''
 st.subheader("🧠 Explainable AI (SHAP)")
 st.info("SHAP visualization temporarily disabled.")
 
