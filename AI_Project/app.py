@@ -7,7 +7,7 @@ import shap
 import os
 
 # PAGE CONFIG
-st.set_page_config(page_title="Footfall Dashboard", layout="wide")
+st.set_page_config(page_title="AI-Driven Store Footfall Impact Analysis on Sales", layout="wide")
 
 # LOAD DATA
 
@@ -52,7 +52,7 @@ filtered_df = df[
 ]
 
 # TITLE
-st.title("📊 Footfall vs Sales Impact Dashboard")
+st.title("📊 AI-Driven Store Footfall Impact Analysis on Sales")
 
 st.write(
     "Analyze how footfall affects Walmart weekly sales using Machine Learning and Explainable AI."
