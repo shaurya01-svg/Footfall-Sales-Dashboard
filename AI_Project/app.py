@@ -73,100 +73,115 @@ col3.metric("👥 Avg Footfall", f"{avg_footfall:,.0f}")
 st.subheader("📋 Dataset Preview")
 st.dataframe(filtered_df.head())
 
-# MONTHLY SALES TREND
-st.subheader("📈 Monthly Sales Trend")
+# DASHBOARD TABS
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "📈 Monthly Trend",
+    "👥 Footfall",
+    "🌡 Temperature",
+    "🎉 Holiday",
+    "🏪 Store Analysis"
+])
 
-monthly_sales = filtered_df.groupby("Month")["Weekly_Sales"].sum()
+with tab1:
 
-fig1, ax1 = plt.subplots(figsize=(10,5))
-ax1.plot(monthly_sales.index, monthly_sales.values, marker='o')
-ax1.set_xlabel("Month")
-ax1.set_ylabel("Sales")
-ax1.set_title("Monthly Sales Trend")
+    st.subheader("📈 Monthly Sales Trend")
 
-st.pyplot(fig1)
-plt.close(fig1)
-# FOOTFALL VS SALES
-st.subheader("👥 Footfall vs Sales")
+    monthly_sales = filtered_df.groupby("Month")["Weekly_Sales"].sum()
 
-fig2, ax2 = plt.subplots(figsize=(8,5))
+    fig1, ax1 = plt.subplots(figsize=(10,5))
+    ax1.plot(monthly_sales.index, monthly_sales.values, marker='o')
+    ax1.set_xlabel("Month")
+    ax1.set_ylabel("Sales")
+    ax1.set_title("Monthly Sales Trend")
 
-sns.scatterplot(
-    data=filtered_df,
-    x="Footfall",
-    y="Weekly_Sales",
-    ax=ax2
-)
+    st.pyplot(fig1)
+    plt.close(fig1)
 
-ax2.set_title("Footfall vs Weekly Sales")
+with tab2:
 
-st.pyplot(fig2)
-plt.close(fig2)
+    st.subheader("👥 Footfall vs Sales")
 
-# TEMPERATURE VS SALES
-st.subheader("🌡 Temperature vs Sales")
+    fig2, ax2 = plt.subplots(figsize=(8,5))
 
-fig3, ax3 = plt.subplots(figsize=(8,5))
+    sns.scatterplot(
+        data=filtered_df,
+        x="Footfall",
+        y="Weekly_Sales",
+        ax=ax2
+    )
 
-sns.scatterplot(
-    data=filtered_df,
-    x="Temperature",
-    y="Weekly_Sales",
-    ax=ax3
-)
+    ax2.set_title("Footfall vs Weekly Sales")
 
-ax3.set_title("Temperature vs Weekly Sales")
+    st.pyplot(fig2)
+    plt.close(fig2)
 
-st.pyplot(fig3)
-plt.close(fig3)
+with tab3:
 
-# HOLIDAY VS SALES
-st.subheader("🎉 Holiday vs Sales")
+    st.subheader("🌡 Temperature vs Sales")
 
-fig4, ax4 = plt.subplots(figsize=(8,5))
+    fig3, ax3 = plt.subplots(figsize=(8,5))
 
-sns.boxplot(
-    data=filtered_df,
-    x="Holiday_Flag",
-    y="Weekly_Sales",
-    ax=ax4
-)
+    sns.scatterplot(
+        data=filtered_df,
+        x="Temperature",
+        y="Weekly_Sales",
+        ax=ax3
+    )
 
-ax4.set_title("Holiday Impact on Sales")
+    ax3.set_title("Temperature vs Weekly Sales")
 
-st.pyplot(fig4)
-plt.close(fig4)
+    st.pyplot(fig3)
+    plt.close(fig3)
 
-# STORE COMPARISON
-st.subheader("🏪 Store-wise Comparison")
+with tab4:
 
-store_sales = df.groupby("Store")["Weekly_Sales"].mean()
+    st.subheader("🎉 Holiday vs Sales")
 
-fig5, ax5 = plt.subplots(figsize=(12,5))
+    fig4, ax4 = plt.subplots(figsize=(8,5))
 
-store_sales.plot(kind='bar', ax=ax5)
+    sns.boxplot(
+        data=filtered_df,
+        x="Holiday_Flag",
+        y="Weekly_Sales",
+        ax=ax4
+    )
 
-ax5.set_ylabel("Average Weekly Sales")
-ax5.set_title("Store-wise Average Weekly Sales")
+    ax4.set_title("Holiday Impact on Sales")
 
-st.pyplot(fig5)
-plt.close(fig5)
-# HEATMAP
-st.subheader("🔥 Correlation Heatmap")
+    st.pyplot(fig4)
+    plt.close(fig4)
 
-fig6, ax6 = plt.subplots(figsize=(10,6))
+with tab5:
 
-corr = filtered_df.select_dtypes(include=['number']).corr()
+    st.subheader("🏪 Store-wise Comparison")
 
-sns.heatmap(
-    corr,
-    annot=True,
-    cmap="coolwarm",
-    ax=ax6
-)
+    store_sales = df.groupby("Store")["Weekly_Sales"].mean()
 
-st.pyplot(fig6)
-plt.close(fig6)
+    fig5, ax5 = plt.subplots(figsize=(12,5))
+
+    store_sales.plot(kind='bar', ax=ax5)
+
+    ax5.set_ylabel("Average Weekly Sales")
+    ax5.set_title("Store-wise Average Weekly Sales")
+
+    st.pyplot(fig5)
+    plt.close(fig5)
+
+    st.subheader("🔥 Correlation Heatmap")
+
+    fig6, ax6 = plt.subplots(figsize=(10,6))
+
+    corr = filtered_df.select_dtypes(include=['number']).corr()
+
+    sns.heatmap(
+        corr,
+        annot=True,
+        cmap="coolwarm",
+        ax=ax6
+    )
+
+    st.pyplot(fig6)
+    plt.close(fig6)
 
 # ML PREDICTION SECTION
 st.subheader("🤖 ML Prediction")
