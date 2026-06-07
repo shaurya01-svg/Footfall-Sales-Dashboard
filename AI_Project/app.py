@@ -188,8 +188,8 @@ st.subheader("🤖 ML Prediction")
 
 input_footfall = st.slider(
     "Select Footfall",
-    int(df["Footfall"].min()),
-    int(df["Footfall"].max()),
+    0,
+    50000,
     5000
 )
 
