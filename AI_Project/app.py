@@ -210,7 +210,41 @@ st.success(f"Predicted Weekly Sales: ₹ {prediction[0]:,.2f}")
 # EXPLAINABLE AI
 
 st.subheader("🧠 Explainable AI (SHAP)")
-st.info("SHAP visualization temporarily disabled.")
+
+try:
+    X = df[["Footfall", "Holiday_Flag"]]
+
+    explainer = shap.Explainer(model, X)
+
+    sample_data = pd.DataFrame(
+        [[input_footfall, holiday_input]],
+        columns=["Footfall", "Holiday_Flag"]
+    )
+
+    shap_values = explainer(sample_data)
+
+    st.write("### Feature Impact on Prediction")
+
+    shap_df = pd.DataFrame({
+        "Feature": ["Footfall", "Holiday_Flag"],
+        "Impact": shap_values.values[0]
+    })
+
+    fig_shap, ax = plt.subplots(figsize=(6,4))
+    sns.barplot(
+        data=shap_df,
+        x="Impact",
+        y="Feature",
+        ax=ax
+    )
+
+    ax.set_title("SHAP Feature Importance")
+
+    st.pyplot(fig_shap)
+    plt.close(fig_shap)
+
+except Exception as e:
+    st.warning(f"SHAP visualization unavailable: {e}")
 
 
 # INSIGHTS SECTION
