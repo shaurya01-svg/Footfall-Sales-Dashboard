@@ -192,10 +192,12 @@ input_footfall = st.number_input(
     value=5000
 )
 
-holiday_input = st.selectbox(
+holiday_option = st.selectbox(
     "Holiday Week?",
-    [0, 1]
+    ["No", "Yes"]
 )
+
+holiday_input = 1 if holiday_option == "Yes" else 0
 
 # PREDICTION
 prediction = model.predict([[
