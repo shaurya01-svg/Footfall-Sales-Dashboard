@@ -18,8 +18,8 @@ csv_path = os.path.join(BASE_DIR, "Data", "cleaned_walmart.csv")
 df = pd.read_csv(csv_path)
 
 #DEBUG 
-st.write("Base Directory:", BASE_DIR)
-st.write("Files in AI_Project:", os.listdir(BASE_DIR))
+#st.write("Base Directory:", BASE_DIR)
+#st.write("Files in AI_Project:", os.listdir(BASE_DIR))
 # DATE CONVERSION
 df['Date'] = pd.to_datetime(df['Date'], dayfirst=True)
 
