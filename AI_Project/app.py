@@ -186,11 +186,10 @@ with tab5:
 # ML PREDICTION SECTION
 st.subheader("🤖 ML Prediction")
 
-input_footfall = st.slider(
-    "Select Footfall",
-    0,
-    50000,
-    5000
+input_footfall = st.number_input(
+    "Enter Footfall",
+    min_value=0,
+    value=5000
 )
 
 holiday_input = st.selectbox(
